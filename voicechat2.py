@@ -1,19 +1,14 @@
 import asyncio
-import aiohttp
-import io
 import json
 import logging
-import numpy as np
 import os
 import re
-import soundfile as sf
-import tempfile
 import time
 import traceback
 import uuid
-import wave
-
 from collections import deque
+
+import aiohttp
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -29,6 +24,8 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 app.mount("/ui", StaticFiles(directory="ui"), name="ui")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 SYSTEM = {
     "role": "system",

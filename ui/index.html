@@ -232,8 +232,6 @@
                 }
                 updateStatus('VAD enabled');
             }
-
-            updateStatuss
         }
         async function pauseVAD() {
             if(isVADEnabled) {
@@ -529,7 +527,11 @@
                 sourceNode: sourceNode
             };
 
-            recorder = new Recorder(config);
+            recorder = new Recorder({
+                ...config,
+                encoderPath: '/static/js/encoderWorker.min.js'
+            });
+
 
             recorder.ondataavailable = (typedArray) => {
                 log(`Data available: ${typedArray.length} bytes`);
