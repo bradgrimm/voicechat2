@@ -312,7 +312,7 @@
                             try {
                                 opusBlob = await recorder.encodeAudio(audio);
                                 console.log("Encoding complete, blob size:", opusBlob.size);
-                                
+
                                 // Ensure WebSocket is open, reinitialize if necessary
                                 if (!socket || socket.readyState !== WebSocket.OPEN) {
                                     log('WebSocket is not open. Reinitializing...');
@@ -561,7 +561,7 @@
 
                 const blob = new Blob(audioChunks, { 'type' : 'audio/ogg; codecs=opus' });
                 audioChunks = []; // Clear the chunks for the next recording
-            
+
                 if (socket && socket.readyState === WebSocket.OPEN) {
                     log(`Sending audio file: ${blob.size} bytes`);
                     socket.send(blob);
